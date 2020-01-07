@@ -1,9 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
-import MovieCard from "./MovieCard";
-import MovieUpdate from "./MovieUpdate";
+import MovieUpdateCard from "./MovieUpdateCard";
 export default class Movie extends React.Component {
   constructor(props) {
     super(props);
@@ -37,7 +34,7 @@ export default class Movie extends React.Component {
   deleteMovie = id => {
     const deleteMovie = this.props.deleteMovie;
     deleteMovie(id);
-  };
+  }
 
   render() {
     if (!this.state.movie) {
@@ -46,29 +43,7 @@ export default class Movie extends React.Component {
 
     return (
       <div className="save-wrapper">
-        <MovieCard movie={this.state.movie} />
-        <div className="save-button" onClick={e => this.saveMovie}>
-          Save
-        </div>
-        <Link to={`/update-movie/${this.state.movie.id}`} style={{ textDecoration: 'none', color: 'white' }}>
-        <div
-          className="save-button"
-          style={{ marginTop: "60px" }}
-          onClick={e => console.log('test')}
-        >
-          Update
-        </div>
-      {/* <MovieUpdate movie={this.state.movie} /> */}
-    </Link>
-        <Link to={`/`} style={{ textDecoration: 'none', color: 'white' }}>
-          <div
-            className="save-button"
-            style={{ marginTop: "120px" }}
-            onClick={e => this.deleteMovie(this.props.match.params.id)}
-          >
-            Delete
-          </div>
-        </Link>
+        <MovieUpdateCard movie={this.state.movie} deleteMovie={this.deleteMovie}/>
       </div>
     );
   }

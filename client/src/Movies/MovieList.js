@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import { Button } from "reactstrap";
+import AddMovie from "./AddMovie";
 export default class MovieList extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,7 @@ export default class MovieList extends Component {
   render() {
     return (
       <div className="movie-list">
+        <Button onClick={e => this.props.history.push("/add-movie")}>Add Movie</Button>
         {this.state.movies.map(movie => (
           <MovieDetails key={movie.id} movie={movie} />
         ))}
